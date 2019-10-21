@@ -21,5 +21,7 @@ public class SetTotalAsteroids : MonoBehaviour {
 	void OnDestroy () {
 		
 		GameManager.gm.totalBigAsteroids--;
-	}
+        GameManager.gm.score += GameManager.gm.score + 1;
+
+    }
 }

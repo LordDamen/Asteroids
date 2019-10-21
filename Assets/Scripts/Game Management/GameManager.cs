@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -16,8 +17,11 @@ public class GameManager : MonoBehaviour {
 	public bool gameIsStarted;
 	public int totalBigAsteroids;
 
-	void Awake () {
+    public Text scoreText;
+    public int score;
 
+	void Awake () {
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
 		//Makes the game manager a singleton object
 		if (gm == null) {
 			gm = this;
@@ -31,11 +35,12 @@ public class GameManager : MonoBehaviour {
 		
 		gameIsStarted = false;
 		totalBigAsteroids = 0;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        UpdateScore();  
 		//Resets the game when the player runs out of lives
 		if (player.lives == 0) {
 			
@@ -52,4 +57,8 @@ public class GameManager : MonoBehaviour {
 			player.lives = 3;
 		}
 	}
+    public void UpdateScore ()
+    {
+        scoreText.text = "Score: " + score;
+    }
 }
